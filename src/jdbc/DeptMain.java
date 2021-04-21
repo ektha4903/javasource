@@ -12,9 +12,9 @@ public class DeptMain {
 		boolean run = true;
 		
 		while(run) {
-			System.out.println("-------------------------------------------------");
-			System.out.println("1.특정 부서 조회 |2.전체 부서 조회 |3.부서 입력 |4.종료");
-			System.out.println("-------------------------------------------------");
+			System.out.println("-------------------------------------------------------------------------------------");
+			System.out.println("1.특정 부서 조회 |2.전체 부서 조회 |3.부서 입력 |4.부서 정보 수정|5.부서 정보 삭제  |6.종료");
+			System.out.println("-------------------------------------------------------------------------------------");
 			System.out.print("번호 입력 >> ");
 			int menu = Integer.parseInt(sc.nextLine());
 			
@@ -44,15 +44,39 @@ public class DeptMain {
 				String dname = sc.nextLine();
 				System.out.print("부서 위치 >> ");
 				String loc = sc.nextLine();
+			
+//				if(dao.insert(deptno,dname,loc)) {
+//					System.out.println("입력 성공");
+//				} else {
+//					System.out.println("입력 실패");
+//				}
+				
+				DeptVO vo1 = new DeptVO();
+				vo1.setDeptno(deptno);
+				vo1.setDname(dname);
+				vo1.setLoc(loc);
+				
+				System.out.println(dao.insert(vo1)?"입력 성공":"입력 실패");
 				
 				
-				if(dao.insert(deptno,dname,loc)) {
-					System.out.println("입력 성공");
-				} else {
-					System.out.println("입력 실패");
-				}
 				break;
 			case 4:
+				System.out.println("\n부서 정보 수정");
+				System.out.print("수정할 부서 번호 입력 >> ");
+				deptno = Integer.parseInt(sc.nextLine());
+				System.out.print("수정할 지역명 입력 >> ");
+				loc = sc.nextLine();
+				
+				System.out.println(dao.update(loc,deptno)?"수정 성공":"수정 실패");
+				break;
+			case 5:
+				System.out.println("\n부서 정보 삭제");
+				System.out.print("삭제할 부서 번호 입력 >> ");
+				deptno = Integer.parseInt(sc.nextLine());
+				System.out.println(dao.delete(deptno)?"삭제 성공":"삭제 실패");
+				
+				break;
+			case 6:
 				run = false;
 				break;
 

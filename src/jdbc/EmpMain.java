@@ -12,9 +12,9 @@ public class EmpMain {
 		EmpDAO dao = new EmpDAO();
 		
 		while(run) {
-			System.out.println("------------------------------------------");
-			System.out.println("1.특정 사원 조회 |2.전체 사원 조회 |3.종료");
-			System.out.println("------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println("1.특정 사원 조회 |2.전체 사원 조회 |3.사원 입력 |4.사원 정보 수정 |5.사원 정보 삭제 | 6.종료");
+			System.out.println("----------------------------------------------------------------------------------");
 			System.out.print("번호 입력 >> ");
 			int menu = Integer.parseInt(sc.nextLine());
 			
@@ -51,6 +51,60 @@ public class EmpMain {
 				}
 				break;
 			case 3:
+				System.out.println("\n사원 정보 입력");
+				System.out.print("사원 번호 >> ");
+				empno = Integer.parseInt(sc.nextLine());
+				System.out.print("사원명 >> ");
+				String ename = sc.nextLine();
+				System.out.print("직무 >> ");
+				String job = sc.nextLine();
+				System.out.print("매니저 번호 >> ");
+				int mgr = Integer.parseInt(sc.nextLine());
+				System.out.print("급여 >> ");
+				int sal = Integer.parseInt(sc.nextLine());
+				System.out.print("추가 수당 >> ");
+				int comm = Integer.parseInt(sc.nextLine());
+				System.out.print("부서 번호 >> ");
+				int deptno = Integer.parseInt(sc.nextLine());
+				
+//				int result = dao.insert(empno,ename,job,mgr,sal,comm,deptno);
+//				System.out.println(result>0?"입력 성공":"입력 실패");
+				
+				EmpVO vo1 = new EmpVO();
+				vo1.setEmpno(empno);
+				vo1.setEname(ename);
+				vo1.setJob(job);
+				vo1.setMgr(mgr);
+				vo1.setSal(sal);
+				vo1.setComm(comm);
+				vo1.setDeptno(deptno);
+				int result = dao.insert(vo1);
+				System.out.println(result>0?"입력 성공":"입력 실패");
+				
+				break;
+			case 4: //empno,comm받기
+				System.out.println("\n사원 정보 수정");
+				System.out.print("수정할 사원 번호 입력 >> ");
+				empno = Integer.parseInt(sc.nextLine());
+				System.out.print("수정할 커미션 입력 >> ");
+				comm = Integer.parseInt(sc.nextLine());
+				
+				int result2 = dao.update(comm, empno);
+				System.out.println(result2>0?"수정 성공":"수정 실패");
+				
+				break;
+			case 5:
+				System.out.println("\n사원 정보 삭제");
+				System.out.print("삭제할 사원 번호 입력 >> ");
+				empno = Integer.parseInt(sc.nextLine());
+				System.out.print("삭제할 사원 이름 입력 >> ");
+				ename = sc.nextLine();
+				
+				System.out.println(dao.delete(empno, ename)>0?"삭제 성공":"삭제 실패");
+				
+				
+				break;
+			case 6:
 				run=false;
 				break;
 			default:
