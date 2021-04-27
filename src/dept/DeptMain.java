@@ -1,4 +1,4 @@
-package demp;
+package dept;
 
 import java.util.List;
 import java.util.Scanner;

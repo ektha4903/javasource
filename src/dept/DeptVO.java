@@ -1,4 +1,4 @@
-package demp;
+package dept;
 
 public class DeptVO {
 	//레코드 하나를 처리할 수 있는 구조

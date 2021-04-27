@@ -1,4 +1,4 @@
-package demp;
+package dept;
 import static emp.jdbcUtil.*;
 
 import java.sql.Connection;

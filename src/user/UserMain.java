@@ -73,7 +73,16 @@ public class UserMain {
 				break;
 			case 4:
 				System.out.println("\n회원 정보 수정");
-				System.out.println();
+				System.out.print("회원 번호 입력 : ");
+				int no3 = Integer.parseInt(sc.nextLine());
+				System.out.print("수정할 번호 입력 : ");
+				String mobile1 = sc.nextLine();
+				System.out.print("수정할 주소 입력 : ");
+				String addr1 = sc.nextLine();
+				
+				UserUpdateService updateService = new UserUpdateService();
+				boolean isUpdate = updateService.getUpdate(mobile1, addr1, no3);
+				System.out.println(isUpdate?"수정 성공":"수정 실패");
 				break;
 			case 5:
 				System.out.println("\n회원 탈퇴");

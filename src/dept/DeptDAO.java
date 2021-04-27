@@ -1,4 +1,4 @@
-package demp;
+package dept;
 
 import java.sql.Connection;
 
