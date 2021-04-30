@@ -10,6 +10,11 @@ public class ConsoleUtil {
 		int empno = Integer.parseInt(sc.nextLine());
 		return empno;
 	}
+	public String getEmpName(Scanner sc) {
+		System.out.print("사원 이름을 입력하세요 : ");
+		String ename = sc.nextLine();
+		return ename;
+	}
 	
 	public void printEmp(EmpVO vo) {
 			System.out.println("empno : "+vo.getEmpno());

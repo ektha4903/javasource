@@ -12,7 +12,11 @@ public class EmpSelectAction implements Action {
 		
 		//empno를 넘겨서 서비스에게 요청하기
 		EmpSelectOneService empOne = new EmpSelectOneService();
-		EmpVO vo = empOne.getEmp(empno);
+		
+		//EmpVO vo = empOne.getEmp(empno);
+		
+		String ename = util.getEmpName(sc);
+		EmpVO vo = empOne.getEmp(ename);
 		
 		//서비스 요청 결과로 받은 vo를 화면출력해주기
 		if(vo!=null) {

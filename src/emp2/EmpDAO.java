@@ -58,6 +58,7 @@ public class EmpDAO {
 	
 	public EmpVO selectOne(int empno) {
 		String sql = "select * from emp_temp where empno=?";
+		String sql2 = "select * from emp_temp where ename like '%?%'";
 		EmpVO vo = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -186,4 +187,37 @@ public class EmpDAO {
 		return result;
 	}
 
+
+public EmpVO selectOne(String ename) {
+	String sql = "select * from emp_temp where ename like ?'";
+	EmpVO vo = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	try {
+		
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, "%"+ename+"%"); //? 세팅 => 
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			vo = new EmpVO();
+			vo.setEmpno(rs.getInt("empno"));
+			vo.setEname(rs.getString("ename"));
+			vo.setJob(rs.getString("job"));
+			vo.setMgr(rs.getInt("mgr"));
+			vo.setHiredate(rs.getDate("hiredate"));
+			vo.setSal(rs.getInt("sal"));
+			vo.setComm(rs.getInt("comm"));
+			vo.setDeptno(rs.getInt("deptno"));
+	
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		close(rs);
+		close(pstmt);
+	}
+	return vo;
 }
+}
+//selectOne end
